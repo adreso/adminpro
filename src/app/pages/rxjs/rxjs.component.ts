@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, Subscriber, observable } from 'rxjs';
-import { retry } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscriber, observable, Subscription } from 'rxjs';
+import { retry, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-rxjs',
@@ -11,14 +11,16 @@ import { retry } from 'rxjs/operators';
   `,
   styles: []
 })
-export class RxjsComponent implements OnInit {
+export class RxjsComponent implements OnInit, OnDestroy  {
+  
+  subscription: Subscription;
 
   constructor() {
 
-    this.regresaObservable()
-    .pipe(
-      retry(2)
-    )
+    this.subscription = this.regresaObservable()
+    // .pipe(
+    //   retry(2)
+    // )
     .subscribe(
       numero => console.log('Pr', numero),
       error => console.error('Error en el obs', error),
@@ -31,25 +33,39 @@ export class RxjsComponent implements OnInit {
   ngOnInit() {
   }
 
-  regresaObservable(): Observable <number> {
+  ngOnDestroy() {
+    console.log('la pagina se va a cerrar');
+    this.subscription.unsubscribe();
+  }
 
-    return new Observable( (observer: Subscriber<number>) => {
+  regresaObservable(): Observable <any> {
+
+    return new Observable( (observer: Subscriber<any>) => {
       let contador = 0;
       const intervalo = setInterval( () => {
         contador ++;
-        observer.next( contador );
 
-        if ( contador === 3 ) {
-          clearInterval( intervalo );
-          observer.complete();
-        }
-        if ( contador === 2 ) {
-          clearInterval( intervalo );
-          observer.error('Auxilio');
-        }
+        const salida = {
+          valor: contador
+        };
+        observer.next( salida );
+
+        // if ( contador === 3 ) {
+        //   clearInterval( intervalo );
+        //   observer.complete();
+        // }
+        // if ( contador === 2 ) {
+        //   clearInterval( intervalo );
+        //   observer.error('Auxilio');
+        // }
 
       }, 1000);
-    });
+    }).pipe(
+      map( resp => {
+        return resp.valor;
+      })
+    )
+    ;
     
   }
 
