@@ -13,10 +13,8 @@ constructor(public _usuarioService: UsuarioService, public router:Router){
 
   canActivate(){
     if(this._usuarioService.estaLogueado()){
-      console.log('Paso por el login guard');
       return true;
     }else{
-      console.log('bloquedo por guard');
       this.router.navigate(['/login']);
       return false;
     }
