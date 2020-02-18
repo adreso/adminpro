@@ -56,7 +56,6 @@ export class LoginComponent implements OnInit {
   }
 
   public ingresar(forma: NgForm) {
-    console.log(forma.value);
     if(forma.invalid){
       return;
     }
