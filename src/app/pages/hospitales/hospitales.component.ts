@@ -39,7 +39,7 @@ export class HospitalesComponent implements OnInit {
     .subscribe(hospitales => this.hospitales=hospitales );
   }
   
-  crearHospital(hospital:string){
+  crearHospital(){
     swal({
       title:'Crear hospital',
       text:'Ingrese el nombre del hospital',

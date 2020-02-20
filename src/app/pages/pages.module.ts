@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 
 // ng2 charts
@@ -37,7 +37,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     DashboardComponent,
     ProgressComponent,
     Graficas1Component,
-    PagesComponent,
+    // PagesComponent,
     IncrementadorComponent,
     GraficoDonaComponent,
     AccoutSettingsComponent,
@@ -45,7 +45,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     RxjsComponent,
     ProfileComponent,
     UsuariosComponent,
-    ModalUploadComponent,
+    // ModalUploadComponent,
     HospitalesComponent,
     MedicosComponent,
     MedicoComponent,
@@ -55,7 +55,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     DashboardComponent,
     ProgressComponent,
     Graficas1Component,
-    PagesComponent,
+    // PagesComponent,
     IncrementadorComponent,
     GraficoDonaComponent
   ],
@@ -65,7 +65,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     PAGES_ROUTES,
     FormsModule,
     ChartsModule,
-    BrowserModule,
+    // BrowserModule,
     PipesModule
   ]
 })
